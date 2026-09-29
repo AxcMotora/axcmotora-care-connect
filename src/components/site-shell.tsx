@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Clock3, Instagram, MapPin, Menu, MessageCircle, Phone, Wrench, X } from "lucide-react";
-import { useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { ADDRESS, HOURS, INSTAGRAM_URL, navItems, WHATSAPP_PRIMARY, WHATSAPP_SECONDARY } from "@/lib/site-data";
 
@@ -15,6 +15,22 @@ export function BrandMark({ compact = false }: { compact?: boolean }) {
 
 export function SiteShell({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
+  const closeRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    closeRef.current?.focus();
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return <div className="min-h-screen bg-background text-foreground">
     <div className="border-b border-border bg-surface-subtle px-4 py-2 text-xs text-muted-foreground">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2">
@@ -28,10 +44,48 @@ export function SiteShell({ children }: { children: ReactNode }) {
         <BrandMark />
         <nav className="hidden items-center gap-5 lg:flex" aria-label="Navigasi utama">{navItems.map(item => <Link key={item.to} to={item.to} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: "text-primary" }}>{item.label}</Link>)}</nav>
         <div className="hidden items-center gap-3 lg:flex"><Button variant="ghost" asChild><Link to="/auth">Area Staf</Link></Button><Button asChild><Link to="/booking">Booking Servis</Link></Button></div>
-        <Button variant="ghost" size="icon" className="lg:hidden" aria-label={open ? "Tutup menu" : "Buka menu"} onClick={() => setOpen(v => !v)}>{open ? <X /> : <Menu />}</Button>
+        <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Buka menu" aria-expanded={open} aria-controls="mobile-drawer" onClick={() => setOpen(true)}><Menu /></Button>
       </div>
-      {open && <nav className="border-t border-border px-4 py-4 lg:hidden">{navItems.map(item => <Link key={item.to} to={item.to} onClick={() => setOpen(false)} className="block border-b border-border py-3 text-sm font-medium">{item.label}</Link>)}<Link to="/auth" onClick={() => setOpen(false)} className="block py-3 text-sm text-muted-foreground">Area Staf</Link></nav>}
     </header>
+    <div id="mobile-drawer" className={`fixed inset-0 z-[60] lg:hidden ${open ? "" : "pointer-events-none"}`} aria-hidden={!open}>
+      <div
+        className={`absolute inset-0 bg-modal-backdrop transition-opacity duration-300 ease-out ${open ? "opacity-100" : "opacity-0"}`}
+        onClick={() => setOpen(false)}
+      />
+      <aside
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu navigasi"
+        className={`absolute right-0 top-0 flex h-full w-[20rem] max-w-[85vw] flex-col border-l border-border bg-background shadow-2xl transition-transform duration-300 ease-out ${open ? "translate-x-0" : "translate-x-full"}`}
+      >
+        <div className="flex items-center justify-between border-b border-border px-5 py-4">
+          <BrandMark compact />
+          <Button ref={closeRef} variant="ghost" size="icon" aria-label="Tutup menu" onClick={() => setOpen(false)}><X className="size-5" /></Button>
+        </div>
+        <nav className="flex-1 overflow-y-auto px-5 py-4" aria-label="Navigasi ponsel">
+          {navItems.map(item => (
+            <Link
+              key={item.to}
+              to={item.to}
+              onClick={() => setOpen(false)}
+              className="block border-b border-border py-4 font-display text-base font-medium transition-colors hover:text-primary"
+              activeProps={{ className: "text-primary" }}
+            >
+              {item.label}
+            </Link>
+          ))}
+          <Link to="/auth" onClick={() => setOpen(false)} className="block border-b border-border py-4 text-sm text-muted-foreground transition-colors hover:text-foreground">Area Staf</Link>
+        </nav>
+        <div className="space-y-3 border-t border-border px-5 py-5">
+          <Button asChild className="w-full"><Link to="/booking" onClick={() => setOpen(false)}>Booking Servis</Link></Button>
+          <div className="flex items-center justify-between pt-1 text-sm">
+            <a href={wa(WHATSAPP_PRIMARY)} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"><MessageCircle className="size-4 text-primary" /> +62 813-9902-0252</a>
+            <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Instagram AxcMotora" className="text-muted-foreground transition-colors hover:text-foreground"><Instagram className="size-4" /></a>
+          </div>
+          <p className="flex items-center gap-2 text-xs text-muted-foreground"><MapPin className="size-3.5 shrink-0 text-primary" /> {ADDRESS}</p>
+        </div>
+      </aside>
+    </div>
     <main>{children}</main>
     <footer className="border-t border-border bg-surface-subtle">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-[1.2fr_1fr_1fr] lg:px-6">
