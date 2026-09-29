@@ -47,7 +47,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
         <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Buka menu" aria-expanded={open} aria-controls="mobile-drawer" onClick={() => setOpen(true)}><Menu /></Button>
       </div>
     </header>
-    <div id="mobile-drawer" className={`fixed inset-0 z-50 lg:hidden ${open ? "" : "pointer-events-none"}`} aria-hidden={!open}>
+    <div id="mobile-drawer" className={`fixed inset-0 z-[60] lg:hidden ${open ? "" : "pointer-events-none"}`} aria-hidden={!open}>
       <div
         className={`absolute inset-0 bg-modal-backdrop transition-opacity duration-300 ease-out ${open ? "opacity-100" : "opacity-0"}`}
         onClick={() => setOpen(false)}
