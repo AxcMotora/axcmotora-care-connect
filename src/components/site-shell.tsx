@@ -26,7 +26,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
     <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-xl">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 lg:px-6">
         <BrandMark />
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Navigasi utama">{navItems.map(item => <Link key={item.to} to={item.to} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: "text-primary" }}>{item.label}</Link>)}</nav>
+        <nav className="hidden items-center gap-5 lg:flex" aria-label="Navigasi utama">{navItems.map(item => <Link key={item.to} to={item.to} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: "text-primary" }}>{item.label}</Link>)}</nav>
         <div className="hidden items-center gap-3 lg:flex"><Button variant="ghost" asChild><Link to="/auth">Area Staf</Link></Button><Button asChild><Link to="/booking">Booking Servis</Link></Button></div>
         <Button variant="ghost" size="icon" className="lg:hidden" aria-label={open ? "Tutup menu" : "Buka menu"} onClick={() => setOpen(v => !v)}>{open ? <X /> : <Menu />}</Button>
       </div>
