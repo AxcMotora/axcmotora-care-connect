@@ -19,6 +19,8 @@
  */
 
 @theme inline {
+  --font-sans: "Manrope", sans-serif;
+  --font-display: "Sora", sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -59,29 +61,43 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-surface-subtle: var(--surface-subtle);
+  --color-hero-muted: var(--hero-muted);
+  --color-hero-border: var(--hero-border);
+  --color-hero-glass: var(--hero-glass);
+  --color-hero-glass-hover: var(--hero-glass-hover);
+  --color-modal-backdrop: var(--modal-backdrop);
+  --shadow-accent: var(--shadow-accent);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --radius: 0.25rem;
+  --background: oklch(0.135 0.006 260);
+  --foreground: oklch(0.94 0.006 250);
+  --card: oklch(0.175 0.007 260);
+  --card-foreground: oklch(0.94 0.006 250);
+  --popover: oklch(0.175 0.007 260);
+  --popover-foreground: oklch(0.94 0.006 250);
+  --primary: oklch(0.65 0.2 28);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.28 0.008 255);
+  --secondary-foreground: oklch(0.94 0.006 250);
+  --muted: oklch(0.225 0.007 260);
+  --muted-foreground: oklch(0.68 0.012 250);
+  --accent: oklch(0.245 0.008 255);
+  --accent-foreground: oklch(0.94 0.006 250);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.34 0.008 255 / 55%);
+  --input: oklch(0.31 0.008 255);
+  --ring: oklch(0.65 0.2 28);
+  --surface-subtle: oklch(0.16 0.006 260);
+  --hero-muted: oklch(0.82 0.008 250);
+  --hero-border: oklch(0.8 0.008 250 / 35%);
+  --hero-glass: oklch(0.2 0.006 260 / 72%);
+  --hero-glass-hover: oklch(0.28 0.008 255 / 82%);
+  --modal-backdrop: oklch(0.05 0 0 / 82%);
+  --shadow-accent: 0 10px 30px -12px oklch(0.65 0.2 28 / 45%);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +156,22 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    letter-spacing: 0;
+    text-rendering: optimizeLegibility;
   }
+  ::selection { background: var(--primary); color: var(--primary-foreground); }
+  button, a, input, textarea, select { letter-spacing: 0; }
 }
+
+@utility bg-hero-overlay {
+  background: linear-gradient(90deg, oklch(0.08 0.004 260 / 96%) 0%, oklch(0.08 0.004 260 / 76%) 48%, oklch(0.08 0.004 260 / 24%) 100%), linear-gradient(0deg, oklch(0.08 0.004 260 / 72%) 0%, transparent 55%);
+}
+
+@utility section-kicker { font-size: 0.75rem; line-height: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--primary); }
+@utility section-title { margin-top: 1rem; font-family: var(--font-display); font-size: 2.25rem; line-height: 1.15; font-weight: 600; letter-spacing: 0; }
+@utility section-copy { margin-top: 1.25rem; max-width: 40rem; font-size: 1rem; line-height: 1.75rem; color: var(--muted-foreground); }
+@utility form-select { height: 2.25rem; width: 100%; border: 1px solid var(--input); border-radius: var(--radius); background: var(--background); padding: 0 0.75rem; font-size: 0.875rem; outline: none; &:focus { border-color: var(--ring); box-shadow: 0 0 0 2px color-mix(in oklab, var(--ring) 30%, transparent); } }
+
+@media (min-width: 768px) { .section-title { font-size: 3rem; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; } }
