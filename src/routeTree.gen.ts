@@ -15,6 +15,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BookingRouteImport } from './routes/booking'
 import { Route as KontakRouteImport } from './routes/kontak'
 import { Route as LayananRouteImport } from './routes/layanan'
+import { Route as SparepartRouteImport } from './routes/sparepart'
 import { Route as TentangRouteImport } from './routes/tentang'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated.admin'
 
@@ -47,6 +48,11 @@ const LayananRoute = LayananRouteImport.update({
   path: '/layanan',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SparepartRoute = SparepartRouteImport.update({
+  id: '/sparepart',
+  path: '/sparepart',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TentangRoute = TentangRouteImport.update({
   id: '/tentang',
   path: '/tentang',
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/booking': typeof BookingRoute
   '/kontak': typeof KontakRoute
   '/layanan': typeof LayananRoute
+  '/sparepart': typeof SparepartRoute
   '/tentang': typeof TentangRoute
   '/admin': typeof AuthenticatedAdminRoute
 }
@@ -73,6 +80,7 @@ export interface FileRoutesByTo {
   '/booking': typeof BookingRoute
   '/kontak': typeof KontakRoute
   '/layanan': typeof LayananRoute
+  '/sparepart': typeof SparepartRoute
   '/tentang': typeof TentangRoute
   '/admin': typeof AuthenticatedAdminRoute
 }
@@ -84,16 +92,31 @@ export interface FileRoutesById {
   '/booking': typeof BookingRoute
   '/kontak': typeof KontakRoute
   '/layanan': typeof LayananRoute
+  '/sparepart': typeof SparepartRoute
   '/tentang': typeof TentangRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/auth' | '/booking' | '/kontak' | '/layanan' | '/tentang' | '/admin'
+    | '/'
+    | '/auth'
+    | '/booking'
+    | '/kontak'
+    | '/layanan'
+    | '/sparepart'
+    | '/tentang'
+    | '/admin'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/auth' | '/booking' | '/kontak' | '/layanan' | '/tentang' | '/admin'
+    | '/'
+    | '/auth'
+    | '/booking'
+    | '/kontak'
+    | '/layanan'
+    | '/sparepart'
+    | '/tentang'
+    | '/admin'
   id:
     | '__root__'
     | '/'
@@ -102,6 +125,7 @@ export interface FileRouteTypes {
     | '/booking'
     | '/kontak'
     | '/layanan'
+    | '/sparepart'
     | '/tentang'
     | '/_authenticated/admin'
   fileRoutesById: FileRoutesById
@@ -113,6 +137,7 @@ export interface RootRouteChildren {
   BookingRoute: typeof BookingRoute
   KontakRoute: typeof KontakRoute
   LayananRoute: typeof LayananRoute
+  SparepartRoute: typeof SparepartRoute
   TentangRoute: typeof TentangRoute
 }
 
@@ -160,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayananRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sparepart': {
+      id: '/sparepart'
+      path: '/sparepart'
+      fullPath: '/sparepart'
+      preLoaderRoute: typeof SparepartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tentang': {
       id: '/tentang'
       path: '/tentang'
@@ -195,6 +227,7 @@ const rootRouteChildren: RootRouteChildren = {
   BookingRoute: BookingRoute,
   KontakRoute: KontakRoute,
   LayananRoute: LayananRoute,
+  SparepartRoute: SparepartRoute,
   TentangRoute: TentangRoute,
 }
 export const routeTree = rootRouteImport
