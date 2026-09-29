@@ -17,12 +17,6 @@ export const getAdminData = createServerFn({ method: "GET" }).middleware([requir
   return data ?? [];
 });
 
-export const claimFirstAdmin = createServerFn({ method: "POST" }).middleware([requireSupabaseAuth]).handler(async ({ context }) => {
-  const { data, error } = await context.supabase.rpc("claim_first_admin");
-  if (error) throw new Error("Akses admin belum dapat diaktifkan.");
-  return { isAdmin: Boolean(data) };
-});
-
 export const createCustomerVehicle = createServerFn({ method: "POST" }).middleware([requireSupabaseAuth]).inputValidator((input) => customerSchema.parse(input)).handler(async ({ data, context }) => {
   await requireAdmin(context);
   const { data: customer, error: customerError } = await context.supabase.from("customers").insert({ owner_name: data.ownerName, phone: data.phone, email: data.email || null, address: data.address || null, notes: data.notes || null }).select("id").single();

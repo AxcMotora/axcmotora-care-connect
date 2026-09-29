@@ -1,19 +1,19 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useMemo, useState } from "react";
-import { Car, ChevronDown, LogOut, Plus, Search, Users, Wrench } from "lucide-react";
+import { ChevronDown, LogOut, Plus, Search, Users, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { BrandMark } from "@/components/site-shell";
-import { claimFirstAdmin, createCustomerVehicle, createServiceEntry, getAdminData } from "@/lib/admin.functions";
+import { createCustomerVehicle, createServiceEntry, getAdminData } from "@/lib/admin.functions";
 import { supabase } from "@/integrations/supabase/client";
 
 type AdminData=Awaited<ReturnType<typeof getAdminData>>;
 export const Route=createFileRoute("/_authenticated/admin")({head:()=>({meta:[{title:"Log Servis — AxcMotora"},{name:"description",content:"CRM dan riwayat servis internal AxcMotora."},{property:"og:title",content:"Log Servis AxcMotora"},{property:"og:description",content:"Area staf internal AxcMotora."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary"}]}),component:AdminPage});
-function AdminPage(){const navigate=useNavigate();const getData=useServerFn(getAdminData);const claim=useServerFn(claimFirstAdmin);const addCustomer=useServerFn(createCustomerVehicle);const addService=useServerFn(createServiceEntry);const [data,setData]=useState<AdminData>([]);const [loading,setLoading]=useState(true);const [error,setError]=useState("");const [query,setQuery]=useState("");const [showCustomer,setShowCustomer]=useState(false);const [serviceVehicle,setServiceVehicle]=useState<string|null>(null);
-async function load(){setLoading(true);setError("");try{await claim();setData(await getData())}catch(e){setError(e instanceof Error?e.message:"Data tidak dapat dimuat.")}finally{setLoading(false)}}useEffect(()=>{void load()},[]);
+function AdminPage(){const navigate=useNavigate();const getData=useServerFn(getAdminData);const addCustomer=useServerFn(createCustomerVehicle);const addService=useServerFn(createServiceEntry);const [data,setData]=useState<AdminData>([]);const [loading,setLoading]=useState(true);const [error,setError]=useState("");const [query,setQuery]=useState("");const [showCustomer,setShowCustomer]=useState(false);const [serviceVehicle,setServiceVehicle]=useState<string|null>(null);
+async function load(){setLoading(true);setError("");try{setData(await getData())}catch(e){setError(e instanceof Error?e.message:"Data tidak dapat dimuat.")}finally{setLoading(false)}}useEffect(()=>{void load()},[]);
 const filtered=useMemo(()=>data.filter(c=>`${c.owner_name} ${c.phone} ${c.vehicles.map(v=>`${v.brand} ${v.model} ${v.license_plate}`).join(" ")}`.toLowerCase().includes(query.toLowerCase())),[data,query]);
 async function logout(){await supabase.auth.signOut();navigate({to:"/auth",replace:true})}
 async function customerSubmit(e:React.FormEvent<HTMLFormElement>){e.preventDefault();const f=new FormData(e.currentTarget);try{await addCustomer({data:{ownerName:String(f.get("ownerName")),phone:String(f.get("phone")),email:String(f.get("email")),address:String(f.get("address")),notes:String(f.get("notes")),brand:String(f.get("brand")) as "Volkswagen"|"Audi"|"Mini Cooper",model:String(f.get("model")),modelYear:f.get("modelYear")?Number(f.get("modelYear")):null,licensePlate:String(f.get("licensePlate")),mileageKm:f.get("mileageKm")?Number(f.get("mileageKm")):null,vin:String(f.get("vin"))}});setShowCustomer(false);await load()}catch(err){setError(err instanceof Error?err.message:"Gagal menyimpan.")}}
