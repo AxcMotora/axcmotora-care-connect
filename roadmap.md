@@ -7,6 +7,7 @@
 - [x] Admin CRM and service history interface
 - [ ] Final preview, security, and mobile verification
 - [ ] Add a dedicated Sparepart page with selected Tokopedia products, prices, and store links
+  - [ ] Include Mechatronic Volkswagen Polo MK6/MK7, Scirocco, Tiguan as the first featured product
 - [ ] Verify the Sparepart page on desktop and mobile
 
 ## Verification update — 29 September 2026
