@@ -1,0 +1,9 @@
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { ShieldCheck } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { BrandMark } from "@/components/site-shell";
+import { lovable } from "@/integrations/lovable";
+import { supabase } from "@/integrations/supabase/client";
+export const Route=createFileRoute("/auth")({head:()=>({meta:[{title:"Masuk Area Staf — AxcMotora"},{name:"description",content:"Akses aman untuk staf AxcMotora."},{property:"og:title",content:"Area Staf AxcMotora"},{property:"og:description",content:"Portal internal AxcMotora."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary"}]}),component:AuthPage});
+function AuthPage(){const navigate=useNavigate();const [error,setError]=useState("");useEffect(()=>{supabase.auth.getUser().then(({data})=>{if(data.user) navigate({to:"/admin",replace:true})})},[navigate]);async function signIn(){setError("");sessionStorage.setItem("axc_auth_next","/admin");const result=await lovable.auth.signInWithOAuth("google",{redirect_uri:window.location.origin+"/auth",extraParams:{prompt:"select_account"}});if(result.error){setError("Masuk dengan Google belum berhasil. Silakan coba lagi.");return}if(!result.redirected) navigate({to:"/admin",replace:true})}return <div className="grid min-h-screen place-items-center bg-background px-4"><div className="w-full max-w-md border border-border bg-card p-8"><BrandMark/><ShieldCheck className="mt-12 size-8 text-primary"/><h1 className="mt-6 font-display text-3xl font-semibold">Area staf AxcMotora</h1><p className="mt-3 text-sm leading-6 text-muted-foreground">Masuk menggunakan akun Google staf yang memiliki izin admin.</p><Button onClick={signIn} size="lg" className="mt-8 w-full">Masuk dengan Google</Button>{error&&<p className="mt-4 text-sm text-destructive">{error}</p>}</div></div>}

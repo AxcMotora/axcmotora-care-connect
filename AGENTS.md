@@ -8,3 +8,8 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+## Project architecture
+- Keep public business pages as separate top-level TanStack routes for SSR and route-specific metadata.
+- Keep staff CRM under the integration-managed `_authenticated` layout; every data operation also uses authenticated server functions and database role checks.
+- Public booking never writes customer data; it validates locally and hands details to WhatsApp.

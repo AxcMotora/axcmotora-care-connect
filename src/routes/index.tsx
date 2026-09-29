@@ -1,24 +1,20 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, CheckCircle2, Instagram, MapPin, MessageCircle, ShieldCheck } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { SiteShell } from "@/components/site-shell";
+import { ADDRESS, INSTAGRAM_URL, services, WHATSAPP_PRIMARY } from "@/lib/site-data";
+import heroImage from "@/assets/axcmotora-workshop.jpg";
+import diagnosticImage from "@/assets/axcmotora-diagnostics.jpg";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
+export const Route = createFileRoute("/")({ head: () => ({ meta: [{ title: "AxcMotora — Spesialis VW, Audi & Mini Cooper Tangerang" }, { name: "description", content: "Servis spesialis Volkswagen, Audi dan Mini Cooper di Tangerang: diagnostik, perawatan, transmisi, kelistrikan dan tuning." }, { property: "og:title", content: "AxcMotora — European Auto Specialist" }, { property: "og:description", content: "Precision specialist care untuk Volkswagen, Audi & Mini Cooper di Tangerang." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: HomePage });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
+function HomePage() { return <SiteShell>
+  <section className="relative min-h-[78vh] overflow-hidden border-b border-border">
+    <img src={heroImage} alt="Workshop spesialis AxcMotora dengan kendaraan Eropa" width={1920} height={1088} className="absolute inset-0 h-full w-full object-cover" />
+    <div className="absolute inset-0 bg-hero-overlay" />
+    <div className="relative mx-auto flex min-h-[78vh] max-w-7xl items-end px-4 pb-16 pt-28 lg:px-6 lg:pb-24"><div className="max-w-4xl"><p className="mb-5 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-primary"><ShieldCheck className="size-4" /> European Auto Specialist</p><h1 className="font-display text-4xl font-semibold leading-[1.08] md:text-6xl lg:text-7xl">Precision Specialist Care for Your VW, Audi & Mini Cooper in Tangerang</h1><p className="mt-6 max-w-2xl text-base leading-7 text-hero-muted md:text-lg">Servis, diagnostik, dan tuning dengan standar presisi untuk menjaga performa kendaraan Eropa Anda.</p><div className="mt-8 flex flex-wrap gap-3"><Button size="lg" asChild><Link to="/booking">Booking Servis <ArrowRight /></Link></Button><Button size="lg" variant="glass" asChild><a href={`https://wa.me/${WHATSAPP_PRIMARY}`} target="_blank" rel="noreferrer"><MessageCircle /> Konsultasi WhatsApp</a></Button></div></div></div>
+  </section>
+  <section className="border-b border-border"><div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 lg:grid-cols-[0.8fr_1.2fr] lg:px-6 lg:py-28"><div><p className="section-kicker">Spesialisasi Kami</p><h2 className="section-title">Keahlian fokus. Hasil yang terukur.</h2><p className="section-copy">Kami memahami karakter, sistem elektronik, dan kebutuhan perawatan Volkswagen, Audi, serta Mini Cooper.</p><Button variant="outline" className="mt-7" asChild><Link to="/layanan">Lihat semua layanan <ArrowRight /></Link></Button></div><div className="grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2">{services.map((service, index) => <article key={service.title} className={`bg-card p-7 ${index === services.length - 1 ? "sm:col-span-2" : ""}`}><service.icon className="size-6 text-primary" /><h3 className="mt-8 font-display text-xl font-semibold">{service.title}</h3><p className="mt-3 text-sm leading-6 text-muted-foreground">{service.description}</p></article>)}</div></div></section>
+  <section className="bg-surface-subtle"><div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 lg:grid-cols-2 lg:items-center lg:px-6 lg:py-28"><img src={diagnosticImage} alt="Teknisi AxcMotora melakukan diagnostik kendaraan" loading="lazy" width={1408} height={1008} className="aspect-[7/5] w-full object-cover" /><div><p className="section-kicker">Tentang AxcMotora</p><h2 className="section-title">Diagnosis tepat sebelum tindakan.</h2><p className="section-copy">Setiap pengerjaan dimulai dari pemeriksaan yang jelas, komunikasi transparan, dan perhatian terhadap detail.</p><ul className="mt-7 space-y-3 text-sm">{["Peralatan diagnostik kendaraan Eropa", "Pengerjaan fokus untuk VW, Audi & Mini Cooper", "Konsultasi langsung dengan tim workshop"].map(item => <li key={item} className="flex items-center gap-3"><CheckCircle2 className="size-4 text-primary" />{item}</li>)}</ul></div></div></section>
+  <section className="border-y border-border"><div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-2 lg:px-6"><Link to="/kontak" className="group border-l-2 border-primary pl-6"><MapPin className="size-6 text-primary" /><h2 className="mt-5 font-display text-2xl font-semibold">Workshop Tangerang</h2><p className="mt-3 max-w-lg text-sm leading-6 text-muted-foreground">{ADDRESS}</p><span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary">Lihat kontak <ArrowRight className="transition-transform group-hover:translate-x-1" /></span></Link><a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className="group border-l-2 border-border pl-6 transition-colors hover:border-primary"><Instagram className="size-6 text-primary" /><h2 className="mt-5 font-display text-2xl font-semibold">Ikuti @AxcMotora</h2><p className="mt-3 text-sm leading-6 text-muted-foreground">Lihat aktivitas workshop, proyek terkini, dan detail pengerjaan kami di Instagram.</p><span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary">Buka Instagram <ArrowRight className="transition-transform group-hover:translate-x-1" /></span></a></div></section>
+</SiteShell>; }
