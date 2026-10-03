@@ -10,8 +10,10 @@ import diagnosticImage from "@/assets/axcmotora-diagnostics.jpg";
 export const Route = createFileRoute("/")({ head: () => ({ meta: [{ title: "AxcMotora — Spesialis VW, Audi & Mini Cooper Tangerang" }, { name: "description", content: "Servis spesialis Volkswagen, Audi dan Mini Cooper di Tangerang: diagnostik, perawatan, transmisi, kelistrikan dan tuning." }, { property: "og:title", content: "AxcMotora — European Auto Specialist" }, { property: "og:description", content: "Precision specialist care untuk Volkswagen, Audi & Mini Cooper di Tangerang." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: HomePage });
 
 function HomePage() { return <SiteShell>
-  <section className="border-b border-border bg-surface-subtle">
-    <div className="mx-auto grid min-h-[calc(100vh-7rem)] max-w-7xl items-center gap-10 px-4 py-14 lg:grid-cols-[0.9fr_1.1fr] lg:px-6 lg:py-20">
+  <section className="relative overflow-hidden border-b border-border bg-surface-subtle">
+    <img src={heroImage} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover opacity-15 lg:hidden" />
+    <div className="absolute inset-0 bg-hero-overlay lg:hidden" aria-hidden="true" />
+    <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 lg:min-h-[720px] lg:grid-cols-[0.9fr_1.1fr] lg:px-6 lg:py-20">
       <Reveal className="relative z-10">
         <div className="inline-flex items-center gap-3 border border-primary/40 bg-primary/10 px-4 py-2 text-xs font-bold uppercase text-primary"><span className="size-2 animate-status-pulse bg-primary" /> Booking Servis Tersedia</div>
         <h1 className="mt-8 max-w-3xl font-display text-5xl leading-[0.98] md:text-7xl lg:text-[5.25rem]">Precision <span className="text-primary">Specialist</span> Care.</h1>
