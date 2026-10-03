@@ -8,8 +8,8 @@ const wa = (number: string) => `https://wa.me/${number}`;
 
 export function BrandMark({ compact = false }: { compact?: boolean }) {
   return <Link to="/" className="flex items-center gap-3" aria-label="AxcMotora beranda">
-    <span className="grid size-9 place-items-center border border-primary bg-primary text-primary-foreground"><Wrench className="size-4" /></span>
-    <span><span className="block font-display text-lg font-semibold leading-none">Axc<span className="text-primary">Motora</span></span>{!compact && <span className="mt-1 hidden text-[10px] uppercase tracking-[0.18em] text-muted-foreground sm:block">European Auto Specialist</span>}</span>
+    <span className="grid size-10 place-items-center border border-primary bg-primary text-primary-foreground"><Wrench className="size-4" /></span>
+    <span><span className="block font-display text-lg leading-none">Axc<span className="text-primary">Motora</span></span>{!compact && <span className="mt-1 hidden text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground sm:block">European Auto Specialist</span>}</span>
   </Link>;
 }
 
@@ -39,10 +39,10 @@ export function SiteShell({ children }: { children: ReactNode }) {
         <a href={wa(WHATSAPP_PRIMARY)} target="_blank" rel="noreferrer" className="hidden items-center gap-2 transition-colors hover:text-foreground md:flex"><Phone className="size-3.5 text-primary" /> +62 813-9902-0252</a>
       </div>
     </div>
-    <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur-xl">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 lg:px-6">
         <BrandMark />
-        <nav className="hidden items-center gap-5 lg:flex" aria-label="Navigasi utama">{navItems.map(item => <Link key={item.to} to={item.to} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: "text-primary" }}>{item.label}</Link>)}</nav>
+        <nav className="hidden items-center gap-5 lg:flex" aria-label="Navigasi utama">{navItems.map(item => <Link key={item.to} to={item.to} className="border-b-2 border-transparent py-2 text-xs font-bold uppercase text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: "border-primary text-foreground" }}>{item.label}</Link>)}</nav>
         <div className="hidden items-center gap-3 lg:flex"><Button variant="ghost" asChild><Link to="/auth">Area Staf</Link></Button><Button asChild><Link to="/booking">Booking Servis</Link></Button></div>
         <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Buka menu" aria-expanded={open} aria-controls="mobile-drawer" onClick={() => setOpen(true)}><Menu /></Button>
       </div>
@@ -87,7 +87,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       </aside>
     </div>
     <main>{children}</main>
-    <footer className="border-t border-border bg-surface-subtle">
+    <footer className="border-t-2 border-primary bg-surface-subtle">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-[1.2fr_1fr_1fr] lg:px-6">
         <div><BrandMark /><p className="mt-5 max-w-md text-sm leading-6 text-muted-foreground">Spesialis servis, diagnostik, dan tuning Volkswagen, Audi & Mini Cooper di Tangerang.</p></div>
         <div><h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Kunjungi Kami</h2><p className="mt-4 text-sm leading-6 text-muted-foreground">{ADDRESS}</p><p className="mt-3 text-sm text-muted-foreground">{HOURS}</p></div>

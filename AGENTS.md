@@ -13,3 +13,4 @@
 - Keep public business pages as separate top-level TanStack routes for SSR and route-specific metadata.
 - Keep staff CRM under the integration-managed `_authenticated` layout; every data operation also uses authenticated server functions and database role checks.
 - Public booking never writes customer data; it validates locally and hands details to WhatsApp.
+- Keep homepage presentation in a compact industrial bento composition using shared semantic theme tokens so all public pages stay visually consistent.
