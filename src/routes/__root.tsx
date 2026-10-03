@@ -83,6 +83,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Spesialis Volkswagen, Audi & Mini Cooper di Tangerang." },
       { name: "author", content: "AxcMotora" },
       { property: "og:type", content: "website" },
+      { name: "google-site-verification", content: "KEDYK8UO_e_LpDGe1G5sz2E-P4z4sP9lnpKYue_qJiM" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
