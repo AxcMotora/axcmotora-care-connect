@@ -74,7 +74,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
               {item.label}
             </Link>
           ))}
-          <Link to="/auth" onClick={() => setOpen(false)} className="block border-b border-border py-4 text-sm text-muted-foreground transition-colors hover:text-foreground">Area Staf</Link>
         </nav>
         <div className="space-y-3 border-t border-border px-5 py-5">
           <Button asChild className="w-full"><Link to="/booking" onClick={() => setOpen(false)}>Booking Servis</Link></Button>
