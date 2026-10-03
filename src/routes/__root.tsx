@@ -79,8 +79,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "AxcMotora" },
-      { name: "description", content: "Spesialis Volkswagen, Audi & Mini Cooper di Tangerang." },
+      { title: "AxcMotora | Spesialis VW, Audi & Mini Cooper Tangerang" },
+      { name: "description", content: "AxcMotora adalah spesialis Volkswagen, Audi & Mini Cooper di Tangerang. Layanan Perawatan, diagnosis, dan perbaikan kendaraan." },
       { name: "author", content: "AxcMotora" },
       { property: "og:type", content: "website" },
       { name: "google-site-verification", content: "KEDYK8UO_e_LpDGe1G5sz2E-P4z4sP9lnpKYue_qJiM" },
