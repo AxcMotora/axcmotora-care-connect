@@ -97,6 +97,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "icon", href: "/logo.jpeg", type: "image/jpeg" },
     ],
+          scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "AxcMotora",
+            url: "https://official.axcmotora-id.workers.dev/",
+            publisher: {
+              "@type": "Organization",
+              name: "AxcMotora",
+              url: "https://official.axcmotora-id.workers.dev/",
+              logo: "https://official.axcmotora-id.workers.dev/logo.jpeg",
+            },
+          }),
+        },
+      ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
