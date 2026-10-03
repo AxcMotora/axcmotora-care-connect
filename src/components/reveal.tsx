@@ -33,9 +33,17 @@ export function Reveal({ children, className = "", delay = 0, style }: RevealPro
           }
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -48px 0px" },
+      { threshold: 0.05, rootMargin: "0px 0px -24px 0px" },
     );
     observer.observe(el);
+    // Fallback: if the element is already on screen when mounted (or the
+    // observer misses its callback), reveal it immediately so content is
+    // never left invisible.
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      el.classList.add("is-revealed");
+      observer.unobserve(el);
+    }
     return () => observer.disconnect();
   }, []);
 
