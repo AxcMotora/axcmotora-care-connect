@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, CheckCircle2, Clock3, Instagram, MapPin, MessageCircle, ShieldCheck, Wrench } from "lucide-react";
+import { ArrowRight, CheckCircle2, Clock3, Instagram, MapPin, MessageCircle, Package, ShieldCheck, ShoppingBag, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/reveal";
 import { SiteShell } from "@/components/site-shell";
-import { ADDRESS, INSTAGRAM_URL, services, WHATSAPP_PRIMARY } from "@/lib/site-data";
+import { ADDRESS, INSTAGRAM_URL, spareparts, TOKOPEDIA_URL, services, WHATSAPP_PRIMARY } from "@/lib/site-data";
 import heroImage from "@/assets/axcmotora-workshop.jpg";
 import diagnosticImage from "@/assets/axcmotora-diagnostics.jpg";
 
