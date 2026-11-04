@@ -26,24 +26,24 @@ export const navItems = [
 
 export const spareparts = [
   {
-    name: "Mechatronic Volkswagen",
+    name: "DSG / Mechatronic Volkswagen",
     compatibility: "Polo, Golf MK6, Golf MK7, Scirocco & Tiguan",
     price: "Rp12.000.000",
-    href: `${TOKOPEDIA_URL}/mechatronic-volkswagen-polo-mk6-mk7-scirocco-tiguan`,
+    href: "https://tk.tokopedia.com/ZSp8uMKSV/",
     code: "DSG / MECHA",
   },
   {
-    name: "Shifter Volkswagen Golf",
-    compatibility: "Golf MK5, Golf MK6 & Golf MK7",
+    name: "Gear Selector Shifter Volkswagen",
+    compatibility: "Golf MK5, MK6 & MK7",
     price: "Rp10.000.000",
-    href: `${TOKOPEDIA_URL}/shifter-vw-golf-mk5-mk6-mk7-scirocco`,
+    href: "https://tk.tokopedia.com/ZSp8uN8pU/",
     code: "GEAR SELECTOR",
   },
   {
-    name: "Racksteer Volkswagen Tiguan",
+    name: "Gear Selector Shifter Tiguan Allspace",
     compatibility: "Tiguan Allspace",
     price: "Rp18.000.000",
-    href: `${TOKOPEDIA_URL}/racksteer-vw-tiguan-all-space`,
-    code: "STEERING",
+    href: "https://tk.tokopedia.com/ZSp8u8wuQ/",
+    code: "GEAR SELECTOR",
   },
 ] as const;

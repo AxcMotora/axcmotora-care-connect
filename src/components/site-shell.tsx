@@ -36,7 +36,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2">
         <span className="flex items-center gap-2"><MapPin className="size-3.5 text-primary" /> Tangerang, Banten</span>
         <span className="flex items-center gap-2"><Clock3 className="size-3.5 text-primary" /> {HOURS}</span>
-        <a href={wa(WHATSAPP_PRIMARY)} target="_blank" rel="noreferrer" className="hidden items-center gap-2 transition-colors hover:text-foreground md:flex"><Phone className="size-3.5 text-primary" /> +62 813-9902-0252</a>
+        <div className="hidden items-center gap-4 md:flex"><a href={wa(WHATSAPP_PRIMARY)} target="_blank" rel="noreferrer" className="flex items-center gap-2 transition-colors hover:text-foreground"><Phone className="size-3.5 text-primary" /> +62 813-9902-0252</a><a href={wa(WHATSAPP_SECONDARY)} target="_blank" rel="noreferrer" className="hidden items-center gap-2 transition-colors hover:text-foreground xl:flex"><Phone className="size-3.5 text-primary" /> +62 817-7986-0888</a></div>
       </div>
     </div>
     <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur-xl">
@@ -92,7 +92,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
         <div><h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Kunjungi Kami</h2><p className="mt-4 text-sm leading-6 text-muted-foreground">{ADDRESS}</p><p className="mt-3 text-sm text-muted-foreground">{HOURS}</p></div>
         <div><h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Hubungi</h2><div className="mt-4 space-y-3 text-sm"><a className="block text-muted-foreground hover:text-foreground" href={wa(WHATSAPP_PRIMARY)} target="_blank" rel="noreferrer">+62 813-9902-0252</a><a className="block text-muted-foreground hover:text-foreground" href={wa(WHATSAPP_SECONDARY)} target="_blank" rel="noreferrer">+62 817-7986-0888</a><a className="flex items-center gap-2 text-muted-foreground hover:text-foreground" href={INSTAGRAM_URL} target="_blank" rel="noreferrer"><Instagram className="size-4" /> @AxcMotora</a></div></div>
       </div>
-      <div className="border-t border-border px-4 py-5 text-center text-xs text-muted-foreground">© 2026 AxcMotora. Spesialis kendaraan Eropa di Tangerang.</div>
+      <div className="border-t border-border px-4 py-5 text-center text-xs text-muted-foreground">© 2026 AxcMotora. Bengkel spesialis mobil Eropa di Tangerang.</div>
     </footer>
     <div className="fixed bottom-5 right-4 z-50 flex flex-col gap-2 sm:right-6"><Button size="icon" className="size-12 rounded-full shadow-xl" asChild><a href={wa(WHATSAPP_PRIMARY)} target="_blank" rel="noreferrer" aria-label="Chat WhatsApp"><MessageCircle className="size-5" /></a></Button><Button size="icon" variant="secondary" className="size-12 rounded-full shadow-xl" asChild><Link to="/booking" aria-label="Booking servis"><Wrench className="size-5" /></Link></Button></div>
   </div>;
