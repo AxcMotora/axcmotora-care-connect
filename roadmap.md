@@ -1,5 +1,13 @@
 # AxcMotora Roadmap
 
+- [x] Rewrite homepage copy (Bahasa Indonesia santai-profesional) per uploaded brief
+  - [x] Hero, layanan, proses, info bengkel, sparepart, CTA penutup + dua nomor WhatsApp di header/footer
+  - [x] New sections: Refurbish Mechatronic (5 kartu keuntungan), Testimoni (placeholder), FAQ (accordion, 7 tanya)
+  - [x] Sparepart links updated to real Tokopedia short links; third product renamed to Gear Selector Shifter Tiguan Allspace
+  - [x] Verified desktop + mobile, FAQ accordion works, no console errors, build OK
+  - [ ] Confirm price of Gear Selector Shifter Tiguan Allspace (kept Rp18.000.000 — Tokopedia listing not readable automatically)
+  - [ ] Replace placeholder testimonials with real ones from customers
+
 - [x] Public pages and shared contact details
 - [x] WhatsApp booking handover with validation
 - [x] Google-only staff authentication
