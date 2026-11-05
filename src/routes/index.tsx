@@ -32,7 +32,9 @@ const prosesSteps = [
   { icon: MessagesSquare, text: "Ngobrol langsung dengan tim bengkel, tanpa perantara" },
 ] as const;
 
-const faqs = [
+type Faq = { question: string; answer: string; bullets?: readonly string[] };
+
+const faqs: readonly Faq[] = [
   { question: "Apakah harus booking dulu?", answer: "Disarankan, supaya mobilmu bisa langsung ditangani tanpa antre lama." },
   { question: "Bisa konsultasi dulu sebelum datang?", answer: "Bisa, langsung chat WhatsApp kami." },
   { question: "Mobil apa saja yang ditangani?", answer: "Volkswagen, Audi, dan Mini Cooper." },

@@ -50,9 +50,8 @@ function SparepartPage() {
                   </span>
                   <span className="font-display text-xs text-muted-foreground">0{index + 1}</span>
                 </div>
-                <p className="mt-10 text-xs font-semibold uppercase tracking-[0.18em] text-primary">{part.code}</p>
+                <p className="mt-10 text-xs font-semibold uppercase tracking-[0.18em] text-primary">{part.label}</p>
                 <h2 className="mt-3 font-display text-2xl font-semibold leading-tight">{part.name}</h2>
-                <p className="mt-3 text-sm leading-6 text-muted-foreground">Kompatibel untuk {part.compatibility}.</p>
                 <div className="mt-auto pt-8">
                   <p className="text-xs text-muted-foreground">Harga Tokopedia</p>
                   <p className="mt-1 font-display text-2xl font-semibold">{part.price}</p>
